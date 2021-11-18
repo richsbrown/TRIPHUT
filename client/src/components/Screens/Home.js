@@ -55,7 +55,7 @@ const Home = () => {
     {
         isAuth &&
         posts && // Only display the block if user is logged in and post array has data from fetch API.
-        <div style={{ position: "relative" }}>
+        <div className="homepage" style={{ position: "relative" }}>
             {(!id && !postId) && <CreateTrip />}
             { // Mapping through the post state array to display all the posts on Page.
                 posts.map(post => {

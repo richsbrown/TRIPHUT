@@ -7,7 +7,7 @@ tripRouter.post('/', isLogged, (req,res)=> {
   res.json({ isLogged: true, user: req.user })
 })
 
-tripRouter.get('/alltrips', isLogged,tripController.getAllTrips)
+tripRouter.get('/alltrips', isLogged, tripController.getAllTrips)
 
 tripRouter.post('/like', isLogged, tripController.updateLikes)
 
