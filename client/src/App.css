@@ -169,7 +169,7 @@ display: flex;
 }
 
 .red-color{
-  back-color:red !important;
+  background-color:red !important;
 }
 
 .hr-profile {
@@ -313,4 +313,8 @@ display: flex;
 .btn-floating{
   bottom: -1px;
   right:-1px;
+}
+
+.add-button {
+  margin-right: 200px;
 }

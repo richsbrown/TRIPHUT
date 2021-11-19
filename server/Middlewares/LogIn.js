@@ -11,7 +11,7 @@ const isLogged = (req,res,next) => {
   const token = authorization.split(" ")[1];
   jwt.verify(token, secretKey, (err,payload) => {
     if(err) {
-      return res.status(422).json({error:'You must be logged in'})
+      return res.status(422).json({error:`You must be logged in ${authorization}`})
     }
     const {_id} = payload;
     User.findById(_id)

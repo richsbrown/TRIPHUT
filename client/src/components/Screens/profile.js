@@ -25,7 +25,6 @@ const Profile = () => {
 
     useEffect(()=> {
       fetch(`http://localhost:3001/user/${username}`,{
-        method:'POST',
         headers:{
           'Content-Type':'application/json',
           'authorization':"Bearer " + localStorage.getItem('jwt')
@@ -44,9 +43,8 @@ const Profile = () => {
 
     
 
-    const followHandler = async ()=> {
-      const response = fetch(`http://localhost:3001/user/${username}/follow`,{
-        method:'post',
+    const followHandler = ()=> {
+      fetch(`http://localhost:3001/user/${username}/follow`,{
         headers: {
           "Content-Type":'application/json',
           'authorization':"Bearer " + localStorage.getItem('jwt')
@@ -60,7 +58,7 @@ const Profile = () => {
       })
       .catch(err => console.log(err))
     }
-    console.log(trips)
+
     return(
       isAuth && userData ?
             <div className="profile card-home home">
@@ -94,8 +92,10 @@ const Profile = () => {
                 </div>
                 { // Mapping through the post state array to display all the posts on Page.
               
-
+             
               userData.trips.slice(0).reverse().map(post => {
+
+                // each post should probably be made into a component instead
                 return(
                   <div className="card trip-card" style={{ marginBottom: "1rem", padding: "0.3rem" }}>
                   <div className = "post-top-more" style={{textAlign:'right'}}>
@@ -107,7 +107,7 @@ const Profile = () => {
                     {post.title ? <h5 style ={{color:'grey',textDecoration:'underline',marginTop:'0px', textTransform:'capitalize'}}>{post.title}</h5> : null}
                       <p>{post.description}</p>
                       <p><strong>Posted On:</strong> {moment(post.postedDate).format('MMMM Do, YYYY')}</p>
-                      <p style ={{color:'#158bcb'}}><strong>{post.likes.length} like{post.likes.length>1? 's':''}</strong></p>
+                      <p style ={{color:'#158bcb'}}><strong>{post.likes.length} like{post.likes.length = 1? '':'s'}</strong></p>
                   </div>
                   </div>
                   </div>

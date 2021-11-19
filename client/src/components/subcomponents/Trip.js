@@ -33,7 +33,7 @@ const Trip = (props) => {
     try{const id = e.target.parentElement.parentElement.parentElement.id;
       console.log(id)
     const response = await fetch(`http://localhost:3001/${id}/delete`, {
-      method:'GET',
+      method:'DELETE',
       headers:{
         'Content-Type':'application/json',
         'authorization': "Bearer " + localStorage.getItem('jwt')
