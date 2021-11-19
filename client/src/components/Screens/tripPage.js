@@ -16,7 +16,6 @@ const TripPage = ()=> {
 
   useEffect(()=>{
         fetch(`http://localhost:3001/trips/${postId}`,{
-          method:'POST',
           headers:{
             'Content-Type':'application/json',
             "authorization": "Bearer " + localStorage.getItem('jwt')

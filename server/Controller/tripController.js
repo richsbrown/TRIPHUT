@@ -6,7 +6,7 @@ exports.getAllTrips = (req, res)=> {
     .populate("postedBy", "_id username dp")
     .populate("likes", "_id username")
     .then(trips => {
-      res.json({ trips })
+      res.status(200).json({ trips })
     })
     .catch(err => console.log(err));
 }
@@ -93,12 +93,12 @@ exports.getTripByUser =(req,res) => {
 
 exports.getTrip =(req,res) => {
     Trip.find({_id:req.params.id})
-    .populate("postedBy", "_id username")
-    .exec()
-    .then (trip => {
-      if(trip) {res.status(200).json({trip})}
-      else{res.status(422).json({error:"Error getting user trips"})}
-    })
+      .populate("postedBy", "_id username")
+      .exec()
+      .then (trip => {
+        if(trip) {res.status(200).json({trip})}
+        else{res.status(422).json({error:"Error getting user trips"})}
+      })
   .catch (err => {
     console.log(err)
     res.status(400).json({err})

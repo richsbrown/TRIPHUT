@@ -3,7 +3,7 @@ const cors = require("cors")
 const PORT = 3001
 const app = express()
 const server = require("http").createServer(app)
-const authRouter = require("./Routes/auth")
+const userRouter = require("./Routes/user")
 const tripRouter = require("./Routes/trip")
 const io = require("socket.io")(server, {
   cors: {
@@ -19,7 +19,7 @@ var corsOptions = {
 
 app.use(cors(corsOptions))
 app.use(express.json())
-app.use(authRouter)
+app.use(userRouter)
 app.use(tripRouter)
 
 io.on("connection", (socket) => {

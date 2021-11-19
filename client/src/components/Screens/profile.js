@@ -25,7 +25,6 @@ const Profile = () => {
 
     useEffect(()=> {
       fetch(`http://localhost:3001/user/${username}`,{
-        method:'POST',
         headers:{
           'Content-Type':'application/json',
           'authorization':"Bearer " + localStorage.getItem('jwt')
@@ -44,9 +43,8 @@ const Profile = () => {
 
     
 
-    const followHandler = async ()=> {
-      const response = fetch(`http://localhost:3001/user/${username}/follow`,{
-        method:'post',
+    const followHandler = ()=> {
+      fetch(`http://localhost:3001/user/${username}/follow`,{
         headers: {
           "Content-Type":'application/json',
           'authorization':"Bearer " + localStorage.getItem('jwt')
@@ -60,7 +58,7 @@ const Profile = () => {
       })
       .catch(err => console.log(err))
     }
-    console.log(trips)
+
     return(
       isAuth && userData ?
             <div className="profile card-home home">
