@@ -43,10 +43,10 @@ describe('Intagration tests', () => {
 
     it('should save a new user to the database', async () => {
 // email, fullname, username, password
-        const email = 'test1@gmail.com';
-        const fullname = 'John Doe Test';
-        const username = 'JohnTest';
-        const password = '123456';
+        const email = 'test2@gmail.com';
+        const fullname = 'Jane Doe Test';
+        const username = 'JaneTest';
+        const password = '222222';
 
         const res = await request.post('/signup', )
         .send({email, fullname, username, password})

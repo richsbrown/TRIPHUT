@@ -2,7 +2,7 @@ const Trip = require('../Models/TripModel');
 const User = require('../Models/UserModel');
 
 exports.getAllTrips = (req, res)=> {
-  console.log('test from controller')
+  //console.log('test from controller')
   Trip.find({},null,{sort:{postedDate:-1}})
     .populate("postedBy", "_id username dp")
     .populate("likes", "_id username")
