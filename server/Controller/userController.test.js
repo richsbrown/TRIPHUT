@@ -53,7 +53,7 @@ describe('Intagration tests', () => {
 
         const user = await User.findOne({username})
         expect(user.username).to.equal(username)
-        await User.findOneAndDelete({username})
+        
     });
 
 
