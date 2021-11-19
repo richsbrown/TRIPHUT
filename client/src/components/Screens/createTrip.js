@@ -225,10 +225,11 @@ const CreateTrip = () => {
                     display: "absolute",
                     position: "fixed",
                     zIndex: 8,
-                    right: -300,
+                    //bottom: -50,
+                    right: -75, // CHANGED 
                   }}
                 >
-                  <span className="btn-floating btn-large black add-button">
+                  <span className="btn-floating btn-large black"> 
                     <i className="material-icons">add</i>
                   </span>
                 </div>

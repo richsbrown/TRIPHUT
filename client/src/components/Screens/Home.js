@@ -31,10 +31,14 @@ const Home = () => {
             })
                 .then(resp => resp.json())
                 .then(resp => {
-                    console.log(resp)
+
+                    //console.log(resp)
+                    
                     if (!resp.error && resp.trips.length > 0) {
                         dispatch(set_hPosts(resp.trips));
-                        console.log(resp.trips)
+
+                        //console.log(resp.trips)
+                        
                         if (!loaded) {
                             setLoaded(true);
                         }

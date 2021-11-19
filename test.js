@@ -5,6 +5,7 @@ const userRouter = require('./server/Routes/user')
 const supertest = require('supertest');
 const mongoose = require('mongoose')
 const Trip = require('./server/Models/TripModel')
+const databaseName = 'TripHut'
 //BeforeAll or BeforeEach
 
 describe('Trip Controller', async () => { 
@@ -15,7 +16,7 @@ describe('Trip Controller', async () => {
   const request = supertest(app)
   
   before(async() => {
-    const dbLink = 'mongodb+srv://marshal:mongo@cluster0.8o9m6.mongodb.net/chat_db?authSource=admin&replicaSet=atlas-m5opbu-shard-0&w=majority&readPreference=primary&appname=MongoDB%20Compass&retryWrites=true&ssl=true'
+    const dbLink = `mongodb://127.0.0.1/${databaseName}`
     await mongoose.connect(dbLink, {useNewUrlParser: true})
   })
   
@@ -27,7 +28,7 @@ describe('Trip Controller', async () => {
     })
   })
   
-  const mockID = '61967a8166babde4eb5eeb2f'
+  const mockID = '61968e58e22942b53f4b02f4'
 
   it('/trips/:id route should return corresponding trip', (done) => {
     request.get(`/trips/${mockID}`).then(result => {
@@ -37,6 +38,9 @@ describe('Trip Controller', async () => {
   })
 })
 
+
+
+
 describe('User Controller', async () => {
   const app = express()
   app.use(express.json())
@@ -44,11 +48,11 @@ describe('User Controller', async () => {
   const request = supertest(app)
   
   before(async() => {
-    const dbLink = 'mongodb+srv://marshal:mongo@cluster0.8o9m6.mongodb.net/chat_db?authSource=admin&replicaSet=atlas-m5opbu-shard-0&w=majority&readPreference=primary&appname=MongoDB%20Compass&retryWrites=true&ssl=true'
+    const dbLink = `mongodb://127.0.0.1/${databaseName}`
     await mongoose.connect(dbLink, {useNewUrlParser: true})
   })
   
-  const mockUsername = '1234'
+  const mockUsername = 'John'
 
   it('/user/:username route should return corresponding user', (done) => {
     request.get(`/user/${mockUsername}`).then(result => {
@@ -57,4 +61,15 @@ describe('User Controller', async () => {
       done()
     })
   })
+
+  const userID = '61967b0fe22942b53f4b01a8'
+
+  it('/:userId/:task should return an array of followers', (done) =>{
+    request.get(`/${userID}/followers`).then(result => {
+      assert.equal(result.body.followers._id, userID);
+      assert.typeOf(result.body.followers.followers, 'array');
+      //assert.typeOf(result.body.followers.followers[0]._id, 'string');
+      done();
+    });
+  });
 })

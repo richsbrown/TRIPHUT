@@ -6,7 +6,7 @@ const userController = require('../Controller/userController');
 
 
 userRouter.get('/user/:username', userController.getUser)
-userRouter.get('/followersOrFollowings/:userId/:task', userController.getFollows)
+userRouter.get('/:userId/:task', userController.getFollows)
 
 userRouter.put('/updateProfilePhoto', isLogged,userController.updateProfilePhoto)
 

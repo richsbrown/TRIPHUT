@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const mongoose = require("mongoose");
+const mongoose = require("mongoose"); //REMOVE
 const User = require('../Models/UserModel');
 const secretKey = 'SHHH this is a secret'
 

@@ -51,9 +51,10 @@ const Routing = () => {
         })
         .catch((er) => console.log(er))
     })
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isUpdate])
 
-  console.log(isAuth, loggedUser)
+  //console.log(isAuth, loggedUser)
 
   return (
     <Routes>
