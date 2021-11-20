@@ -1,10 +1,12 @@
-import React, {useEffect, useState} from 'react'
-import {Link, useParams, useNavigate} from 'react-router-dom'
-import {useSelector} from 'react-redux'
+import React, {useEffect, useState} from 'react';
+import {Link, useParams, useNavigate} from 'react-router-dom';
+import {useSelector} from 'react-redux';
+import APIService from '../../apiService';
 
 const TripPage = ()=> {
   const [trip,setTrip] = useState();
   const [loaded,setLoaded] = useState(null);
+  const [token] = useState(localStorage.getItem('jwt'))
   
   const {postId} = useParams()
   const navigate = useNavigate();
@@ -12,16 +14,8 @@ const TripPage = ()=> {
   const loggedUser = useSelector(state => state.loggedUser);
   const isUpdate = useSelector(state=>state.isUpdate)
 
-  useEffect(()=>{
-    fetch(`http://localhost:3001/trips`,{
-      method: 'POST',
-      headers:{
-        'Content-Type':'application/json',
-        "authorization": "Bearer " + localStorage.getItem('jwt')
-      },
-      body: JSON.stringify({postId})
-    })
-      .then(resp => resp.json())
+  useEffect(() => {
+    APIService.getTripInfo(postId, token)
       .then(data => {
         if(!data.error){
           setTrip(data.trip[0])
@@ -31,7 +25,7 @@ const TripPage = ()=> {
           navigate('/')
         }
       }).catch(e=> console.log(e))
-  },[isUpdate, navigate, postId, trip])
+  },[isUpdate, navigate, postId, trip, token]);
 
   return(
     isAuth && loaded ? (

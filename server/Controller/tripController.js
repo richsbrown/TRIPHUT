@@ -42,6 +42,7 @@ exports.getLikes = (req,res) => {
     .populate('likes', 'username dp _id fullname followers')
     .exec()
     .then(likes => {
+      
       if(likes) {res.json({likes})}
       else {res.status(422).json({error:"no one likes you"})}
     })

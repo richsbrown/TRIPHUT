@@ -6,6 +6,7 @@ import {ref, getDownloadURL, uploadBytesResumable} from 'firebase/storage';
 import {useNavigate, useParams} from 'react-router-dom';
 import ReactCrop from 'react-image-crop';
 import { update_data } from "../../Redux/Actions/action";
+import APIService from '../../apiService'
 
 const AddPhoto = () => {
   const {postId} = useParams();
@@ -15,8 +16,9 @@ const AddPhoto = () => {
 
   const [file,setFile] = useState(null);
   const [send, setSend] = useState(null);
-  const [url, setUrl] = useState(null)   
+  const [url, setUrl] = useState(null);
   const [crop,setCrop] = useState({x:0,y:30,width:100});
+  const [token] = useState(localStorage.getItem('jwt'));
 
   const onChangeHandler = event => {
     const url = event.target.files[0];
@@ -50,25 +52,14 @@ const handleUpload = e => {
 
   useEffect(()=>{
     if(send){
-      fetch('http://localhost:3001/photos',{
-        method:'POST',
-        headers:{
-          'Content-Type':'application/json',
-          "authorization": "Bearer " + localStorage.getItem('jwt')
-        },
-        body:JSON.stringify({
-          photo:send,
-          tripId:postId
-        })
-      })
-      .then(resp=>resp.json())
+      APIService.postPhoto(send, postId, token)
       .then(result=>{
         dispatch(update_data())
         navigate(-1)
       })
       .catch(e=>console.log(e));
     }
-  },[send, dispatch, navigate, postId]);
+  },[send, dispatch, navigate, postId, token]);
 
   return (
     <>

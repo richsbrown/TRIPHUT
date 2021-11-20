@@ -2,18 +2,20 @@ import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { set_loggedUser } from "../../Redux/Actions/action";
+import APIService from '../../apiService';
 
 const EditProfile =() => {
 const navigate = useNavigate();
 const dispatch = useDispatch();
-const loggedUser = useSelector(state=>state.loggedUser)
+const loggedUser = useSelector(state=>state.loggedUser);
 const isAuth = useSelector(state=>state.isLogged);
 
+const [token] = useState(localStorage.getItem('jwt'));
 const [data,setData] = useState({
   fullname:loggedUser.fullname,
   username: loggedUser.username,
   email:loggedUser.email
-})
+});
 
 const handleData = (e)=>{
   const name = e.target.name;
@@ -24,15 +26,7 @@ const handleData = (e)=>{
 
 const handleSubmit = e => {
   e.preventDefault();
-  fetch(`http://localhost:3001/updateUser`, {
-      method: 'post',
-      headers: {
-          "Content-Type": "application/json",
-          "authorization": "Bearer " + localStorage.getItem('jwt')
-      },
-      body: JSON.stringify({ id: loggedUser._id, data })
-  })
-      .then(resp => resp.json())
+  APIService.editProfile(loggedUser._id, data, token)
       .then(result => {
           if (!result.error) {
               dispatch(set_loggedUser(result.user));

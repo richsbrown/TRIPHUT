@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import M from "materialize-css";
+import APIService from '../../apiService';
 
 const Signup = ()=>{
 const navigate = useNavigate()
@@ -10,7 +11,7 @@ const {email,username,password,fullname} = formData;
 const signupHandler = (e)=> {
   const name = e.target.name;
   const value = e.target.value;
-  setFormData((prevState)=>{
+  setFormData((prevState)=> {
     return {...prevState,[name]:value}
   })
 }
@@ -18,19 +19,7 @@ const signupHandler = (e)=> {
 const submitHandler = async (event) => {
   try{
     event.preventDefault();
-    const response = await fetch('http://localhost:3001/signup', {
-      method:'POST',
-      headers:{
-        'Content-Type':'application/json'
-      },
-      body:JSON.stringify({
-        email,
-        fullname,
-        password,
-        username
-      })
-    })
-    const data = await response.json();
+    const data = await APIService.createUser(email, fullname, username, password);
     if(data.error){
       M.toast({ html: data.error, classes: "red darken-1" })
     }
@@ -42,7 +31,6 @@ const submitHandler = async (event) => {
   }catch(e){
     console.log(e)
   }
-  
 }
 
   return(

@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Link, useParams, useNavigate} from 'react-router-dom';
 import {useSelector} from 'react-redux';
 import moment from 'moment';
+import APIService from '../../apiService';
 
 const Profile = () => {
   const {username,} = useParams();
@@ -11,15 +12,10 @@ const Profile = () => {
   
   const [userData, setUserData] = useState(null);
   const [follow, setFollow] = useState(false);
+  const [token] = useState(localStorage.getItem('jwt'))
 
   useEffect(()=> {
-    fetch(`http://localhost:3001/user/${username}`,{
-      headers:{
-        'Content-Type':'application/json',
-        'authorization':"Bearer " + localStorage.getItem('jwt')
-      }
-    })
-    .then(response =>response.json())
+    APIService.getProfileInfo(username, token)
     .then(data => {
       if(data.user) {
         setUserData(data.user);
@@ -28,16 +24,10 @@ const Profile = () => {
       }
     })
     .catch(er => console.log(er));
-  },[follow, navigate, username]);
+  },[follow, navigate, username, token]);
   
   const followHandler = ()=> {
-    fetch(`http://localhost:3001/user/${username}/follow`,{
-      headers: {
-        "Content-Type":'application/json',
-        'authorization':"Bearer " + localStorage.getItem('jwt')
-      }
-    })
-    .then(response => response.json())
+    APIService.getFollowers(username, token)
     .then(data => {
       if(!data.error){
         setFollow(prev=>!prev)
@@ -91,12 +81,13 @@ const Profile = () => {
               {post.title ? <h5 style ={{color:'grey',textDecoration:'underline',marginTop:'0px', textTransform:'capitalize'}}>{post.title}</h5> : null}
                 <p>{post.description}</p>
                 <p><strong>Posted On:</strong> {moment(post.postedDate).format('MMMM Do, YYYY')}</p>
-                <p style ={{color:'#158bcb'}}><strong>{post.likes.length} like{post.likes.length = 1? '':'s'}</strong></p>
+                <p style ={{color:'#158bcb'}}><strong>{post.likes.length} like{post.likes.length === 1 ? '':'s'}
+                </strong></p>
             </div>
             </div>
             </div>
           )
-          // <Link key={++count} to={{ pathname: `/${userData._id}/${post._id}` }}><img style={{ width: '100%', height: '8rem' }} src={post.url} alt="posts" /></Link>
+          //<Link key={++count} to={{ pathname: `/${userData._id}/${post._id}` }}><img style={{ width: '100%', height: '8rem' }} src={post.url} alt="posts" /></Link>
         })
       }
       </div>

@@ -5,6 +5,7 @@ import { update_hPosts } from "../../Redux/Actions/action"
 import ReactCrop from "react-image-crop"
 import "react-image-crop/dist/ReactCrop.css"
 import { storage } from "../../firebase/index"
+import APIService from '../../apiService'
 import {
   ref,
   getDownloadURL,
@@ -79,31 +80,22 @@ const CreateTrip = () => {
   }
 
   useEffect(() => {
+
+    async function sendTrip (url, description, title) {
+      const result = await APIService.CreateTrip(url, description, title)
+      return result;
+    }
+
     if (send) {
-      fetch("http://localhost:3001/createtrip", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          authorization: "Bearer " + localStorage.getItem("jwt"),
-        },
-        body: JSON.stringify({
-          url: url,
-          description: description,
-          title: title,
-        }),
-      })
-        .then((resp) => resp.json())
-        .then((result) => {
-          dispatch(update_hPosts(result.post))
-          if (result.error) {
-            M.toast({ html: result.error, classes: "red darken-1" })
-          } else {
-            setTrip({ title: "", description: "", url: "", file: null })
-            setSend((prev) => !prev)
-            M.toast({ html: result.message, classes: "blue darken-1" })
-          }
-        })
-        .catch((err) => console.log(err))
+      const result = sendTrip(url, description, title)
+        dispatch(update_hPosts(result.post))
+        if (result.error) {
+          M.toast({ html: result.error, classes: "red darken-1" })
+        } else {
+          setTrip({ title: "", description: "", url: "", file: null })
+          setSend((prev) => !prev)
+          M.toast({ html: result.message, classes: "blue darken-1" })
+        }
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [send, imgUrl])

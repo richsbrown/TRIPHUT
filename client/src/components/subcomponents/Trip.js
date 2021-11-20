@@ -1,24 +1,19 @@
-import React from "react";
+import React, {useState} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {update_data} from '../../Redux/Actions/action';
 import { Link } from "react-router-dom";
 import moment from "moment";
+import APIService from "../../apiService";
 
 const Trip = (props) => {
   const mydata = useSelector(state =>state.loggedUser);
   const dispatch = useDispatch();
   const { url, description, _id: id, postedBy: { _id: postedId, username, dp }, likes} = props.post;
+  const [token] = useState(localStorage.getItem('jwt'))
 
   const like = async() =>{
     try{
-      const response = await fetch('http://localhost:3001/like', {
-        method:'POST',
-        headers:{
-          'Content-Type':'application/json',
-          "authorization": "Bearer " + localStorage.getItem('jwt')
-        },
-        body:JSON.stringify({tripId:id})
-      });
+      const response = await APIService.like(id, token);
       await response.json();
       dispatch(update_data());
     }
