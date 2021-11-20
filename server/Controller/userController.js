@@ -116,7 +116,7 @@ exports.signIn = (req,res) => {
 exports.getFollows = (req, res)=> {
   User.findById(req.params.userId, req.params.task)
     .populate(req.params.task, "username dp _id fullname followers")
-    .exec()
+    //.exec()
     .then(task => {
       if (task) {
         res.json({ [req.params.task]: task });

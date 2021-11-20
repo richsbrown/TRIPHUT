@@ -15,25 +15,26 @@ const TripPage = ()=> {
 
 
   useEffect(()=>{
-        fetch(`http://localhost:3001/trips/${postId}`,{
+        fetch(`http://localhost:3001/trips`,{
+          method: 'POST',
           headers:{
             'Content-Type':'application/json',
             "authorization": "Bearer " + localStorage.getItem('jwt')
-          }
-          
+          },
+          body: JSON.stringify({postId})
         })
         .then(resp => resp.json())
         .then(data => {
             if(!data.error){
               setTrip(data.trip[0])
               setLoaded(true)
-              
+              console.log("trip: " + trip)
             }else{
               navigate('/')
             }
           }).catch(e=> console.log(e))
   },[isUpdate])
-  console.log(trip)
+
   return(
     isAuth && loaded ? (
       <div className="profile card-home home">

@@ -8,10 +8,10 @@ tripRouter.post('/', isLogged, (req,res)=> {
 })
 
 tripRouter.get('/user/:id/trips', isLogged, tripController.getTripByUser)
-tripRouter.get('/trips/:id', tripController.getTrip)
 tripRouter.get('/alltrips', tripController.getAllTrips)
 tripRouter.get('/:tripId/likes', isLogged, tripController.getLikes)
 
+tripRouter.post('/trips', tripController.getTrip)
 tripRouter.post('/like', isLogged, tripController.updateLikes)
 tripRouter.post('/createtrip', isLogged,tripController.createTrip)
 tripRouter.post('/photos', tripController.updatePhotos)
