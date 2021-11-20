@@ -17,10 +17,11 @@ const ContextProvider = ({ children }) => {
   const userVideo = useRef()
   const connectionRef = useRef()
   const [name, setName] = useState("")
-  const [connection, setConnection] = useState("")
+  //const [connection, setConnection] = useState("")
 
   useEffect(() => {
     socket = io(endPoint)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [endPoint])
 
   useEffect(() => {

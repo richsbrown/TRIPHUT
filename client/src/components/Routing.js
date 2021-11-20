@@ -7,7 +7,7 @@ import {
   set_loggedUser,
   unset_loggedUser,
 } from "../Redux/Actions/action"
-import { Route, Routes, Switch } from "react-router-dom"
+import { Route, Routes } from "react-router-dom"
 import Login from "../components/Screens/login"
 import Signup from "../components/Screens/signup"
 import Home from "../components/Screens/Home"
@@ -21,14 +21,14 @@ import VideoChat from "./Screens/videoChatApp"
 
 const Routing = () => {
   const isAuth = useSelector((state) => state.isLogged)
-  const loggedUser = useSelector((state) => state.loggedUser)
+  //const loggedUser = useSelector((state) => state.loggedUser)
   const isUpdate = useSelector((state) => state.isUpdate)
   const dispatch = useDispatch()
 
   useEffect(() => {
     //using unstable batch updates so that the setstate functions dont trigger useEffect again and again
     ReactDOM.unstable_batchedUpdates(() => {
-      fetch("http://localhost:3001", {
+      fetch("http://localhost:3001/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

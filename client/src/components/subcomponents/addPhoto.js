@@ -1,83 +1,52 @@
 import React, { useState, useEffect } from 'react';
-import M from "materialize-css";
 import { useSelector, useDispatch } from "react-redux";
 import 'react-image-crop/dist/ReactCrop.css';
-import {storage} from '../../firebase/index'
-import {ref, uploadString, uploadBytes, getDownloadURL, uploadBytesResumable} from 'firebase/storage'
-import {useNavigate, useParams} from 'react-router-dom'
+import {storage} from '../../firebase/index';
+import {ref, getDownloadURL, uploadBytesResumable} from 'firebase/storage';
+import {useNavigate, useParams} from 'react-router-dom';
 import ReactCrop from 'react-image-crop';
-import { set_loggedUser, update_data } from "../../Redux/Actions/action";
+import { update_data } from "../../Redux/Actions/action";
 
 const AddPhoto = () => {
-  const {postId} = useParams()
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
-  const isAuth = useSelector(state =>state.isLogged)
+  const {postId} = useParams();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const isAuth = useSelector(state =>state.isLogged);
+
   const [file,setFile] = useState(null);
   const [send, setSend] = useState(null);
-  const [url, setUrl] = useState(null)
-   
-  const [image, setImage] = useState(null);
+  const [url, setUrl] = useState(null)   
   const [crop,setCrop] = useState({x:0,y:30,width:100});
-
-  function getCroppedImage(image,crop) {
-    const canvas = document.createElement('canvas');
-    const scaleX = image.naturalWidth /image.width;
-    const scaleY = image.naturalHeight/image.height;
-    canvas.width = crop.width
-    canvas.height = crop.height;
-    const ctx = canvas.getContext('2d');
-
-    ctx.drawImage(
-      image,
-      crop.x*scaleX,
-      crop.y*scaleY,
-      crop.width*scaleX,
-      crop.height*scaleY,
-      0,
-      0,
-      crop.width,
-      crop.height
-    );
-    return canvas.toDataURL('image/png');
-
-  }
 
   const onChangeHandler = event => {
     const url = event.target.files[0];
-    console.log(event.target.files)
     if (url) {
         setFile(URL.createObjectURL(url));
-        setUrl(url)
+        setUrl(url);
     } else {
         setFile(null);
     }
+};
 
+const handleUpload = e => {
+  e.preventDefault();
+  const name = url.name.replace('.','');
+  const storageRef = ref(storage,`images/${name}`);
+  const upBytes = uploadBytesResumable(storageRef,url);
+  upBytes.on(
+    'state_changed',
+    snapshot =>{},
+    error => {
+      console.log(error);
+    },
+    ()=>{
+      getDownloadURL(upBytes.snapshot.ref).then(url=>{
+        setSend(url)
+        console.log(url,file,send)
+      })
+    }
+  )
 }
-
-  const handleUpload = e => {
-    
-    e.preventDefault();
-    const name = url.name.replace('.','')
-    console.log(url)
-    const storageRef = ref(storage,`images/${name}`)
-        const upBytes = uploadBytesResumable(storageRef,url)
-        upBytes.on(
-          'state_changed',
-          snapshot =>{},
-        error => {
-          console.log(error);
-        },
-        ()=>{
-          getDownloadURL(upBytes.snapshot.ref).then(url=>{
-            setSend(url)
-            console.log(url,file,send)
-          })
-        }
-        
-        )
-    
-  }
 
   useEffect(()=>{
     if(send){
@@ -99,7 +68,7 @@ const AddPhoto = () => {
       })
       .catch(e=>console.log(e))
     }
-  },[send])
+  },[send, dispatch, navigate, postId])
 
   return (
     <>
@@ -116,7 +85,7 @@ const AddPhoto = () => {
                 </div>
                 {
                     file && <div >
-                        <ReactCrop onImageLoaded={setImage} src={file} crop={crop} keepSelection='true' circularCrop onChange={setCrop} />
+                        <ReactCrop src={file} crop={crop} keepSelection='true' circularCrop onChange={setCrop} />
                     </div>
                 }
             </div>

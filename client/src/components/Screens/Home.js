@@ -5,6 +5,7 @@ import CreateTrip from './createTrip';
 import Trip from '../subcomponents/Trip'
 import { set_hPosts } from "../../Redux/Actions/action";
 import ReactDOM from 'react-dom';
+import Discover from '../subcomponents/Discover';
 
 const Home = () => {
   const {id, postId} = useParams();
@@ -13,8 +14,8 @@ const Home = () => {
   const posts = useSelector(state => state.ishposts);
   const [loaded,setLoaded] = useState(null);
   const dispatch = useDispatch();
-    const navigate = useNavigate();
-  const {fullname} = useSelector(state =>state.loggedUser)
+  const navigate = useNavigate();
+  //const {fullname} = useSelector(state =>state.loggedUser)
 
 
   useEffect(() => {
@@ -59,7 +60,21 @@ const Home = () => {
     {
         isAuth &&
         posts && // Only display the block if user is logged in and post array has data from fetch API.
-        <div className="homepage" style={{ position: "relative" }}>
+        
+        <div>
+
+        <div>Top Trips</div>
+
+        <div>
+
+        <Discover />
+
+            
+        </div>
+
+
+
+        <div className="homepage" style={{ position: "relative", }}>
             {(!id && !postId) && <CreateTrip />}
             { // Mapping through the post state array to display all the posts on Page.
                 posts.map(post => {
@@ -67,6 +82,8 @@ const Home = () => {
                 })
             }
         </div>
+        </div>
+
     }
 </div>
 
