@@ -18,8 +18,6 @@ const handleFormData = (event) => {
   setFormData((prevState)=>{
     return {...prevState,[name]:value}
   })
-  console.log(email,password)
-
 }
 
 const handleSubmit = async (event) => {
@@ -37,7 +35,6 @@ const handleSubmit = async (event) => {
     })
 
     const data = await response.json();
-    console.log("here is the token: " + data.token)
     if(data.error){
       M.toast({ html: data.error, classes: "red darken-1" })
     }

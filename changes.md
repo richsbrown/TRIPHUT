@@ -9,6 +9,9 @@ Changes done:
     FrontEnd
         - added Discover Section
         - Discover Lists Trips by mosted liked
-        - *** Unlike feature not working
         - Cleaned up all unused React values
+
+
+        
+        - *** Unlike feature not working
         - *** TripPage rename values etc. 

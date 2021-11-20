@@ -66,35 +66,30 @@ const handleUpload = e => {
         dispatch(update_data())
         navigate(-1)
       })
-      .catch(e=>console.log(e))
+      .catch(e=>console.log(e));
     }
-  },[send, dispatch, navigate, postId])
+  },[send, dispatch, navigate, postId]);
 
   return (
     <>
-        {  // here only shows the form and image data based on file selected..
-            isAuth && <div className="card home card-home">
-                <div>
-
-                    <div>
-                        <label htmlFor="file-input" className="btn btn-large blue pp-selectBtn">Select</label>
-                        {file && <span style={{ marginLeft: '40%' }} onClick={handleUpload} className="btn btn-large blue pp-selectBtn">Upload</span>}
-                    </div>
-
-                    <input style={{ "display": "none" }} id="file-input" type="file" accept="image/png, image/jpeg" files={file} onChange={onChangeHandler}  />
-                </div>
-                {
-                    file && <div >
-                        <ReactCrop src={file} crop={crop} keepSelection='true' circularCrop onChange={setCrop} />
-                    </div>
-                }
+      {  // here only shows the form and image data based on file selected..
+        isAuth && <div className="card home card-home">
+          <div>
+            <div>
+              <label htmlFor="file-input" className="btn btn-large blue pp-selectBtn">Select</label>
+              {file && <span style={{ marginLeft: '40%' }} onClick={handleUpload} className="btn btn-large blue pp-selectBtn">Upload</span>}
             </div>
-
-        }
+            <input style={{ "display": "none" }} id="file-input" type="file" accept="image/png, image/jpeg" files={file} onChange={onChangeHandler}  />
+          </div>
+          {
+            file && <div >
+              <ReactCrop src={file} crop={crop} keepSelection='true' circularCrop onChange={setCrop} />
+            </div>
+          }
+        </div>
+      }
     </>
-)
-
-
-}
+  )
+};
 
 export default AddPhoto
