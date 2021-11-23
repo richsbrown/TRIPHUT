@@ -7,6 +7,7 @@ import {useNavigate} from 'react-router-dom';
 import ReactCrop from 'react-image-crop';
 import { set_loggedUser, update_data } from "../../Redux/Actions/action";
 import APIService from '../../apiService';
+import './styles/profilePhoto.css'
 
 const ProfilePhoto = () => {
   const dispactch = useDispatch();

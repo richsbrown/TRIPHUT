@@ -7,19 +7,51 @@ import { set_hPosts } from "../../Redux/Actions/action";
 import ReactDOM from 'react-dom';
 import Discover from '../subcomponents/Discover';
 import APIService from '../../apiService'
+import './styles/home.css'
 
 const Home = () => {
   const {id, postId} = useParams();
+  const loggedUser = useSelector(state => state.loggedUser)
   const isAuth = useSelector(state => state.isLogged);
   const isUpdate = useSelector(state => state.isUpdate);
   const posts = useSelector(state => state.ishposts);
   const [loaded,setLoaded] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  //const {fullname} = useSelector(state =>state.loggedUser)
+
+  //const [trips, setTrips] = useState([]);
+  //const [followingTrips, setFollowingTrips] = useState([])
+
 
 
   useEffect(() => {
+
+    /* stuff to post-getting scaleable
+
+    async function getFollowing (){
+      const response = await APIService.getFollowing(loggedUser.username)
+      const allTrips = [];
+      response.following.forEach(profile => {
+        profile.trips.forEach(trip => allTrips.push(trip))
+      })
+      setFollowingTrips(allTrips);
+    }
+    
+    getFollowing()
+    
+    async function getTripInfo(trip) {
+      const tripObject = await APIService.getTripInfo(trip);
+      return tripObject;
+    }
+    
+    const getTrips = async () => {
+      return Promise.all(followingTrips.map(trip => getTripInfo(trip)))
+    }
+    
+    
+    getTrips().then(res => console.log(res));
+    */
+    
     if (isAuth) {
       // // Using ReactDOM.unstable_batchedUpdates to batch the fetch and sts
       ReactDOM.unstable_batchedUpdates(() => {
@@ -56,7 +88,9 @@ const Home = () => {
             {(!id && !postId) && <CreateTrip />}
             { // Mapping through the post state array to display all the posts on Page.
             posts.map(post => {
+              if (loggedUser.following.indexOf(post.postedBy._id) !== -1) {
                 return <Trip id={post._id} key={post._id} postId={post._id} post={post} />
+              }
             })
             }
         </div>

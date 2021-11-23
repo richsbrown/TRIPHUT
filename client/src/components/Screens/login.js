@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import {set_islogged, set_loggedUser} from '../../Redux/Actions/action'
 import APIService from '../../apiService'
+import './styles/login.css'
 
 const Login = () => {
 const [formData,setFormData] = useState({email:"",password:""})

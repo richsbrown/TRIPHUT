@@ -1,5 +1,5 @@
 import React from 'react'
-import '../../App.css'
+import './styles/discover.css'
 import { useEffect, useState } from 'react'
 import APIService from '../../apiService'
 import { useNavigate } from "react-router-dom";

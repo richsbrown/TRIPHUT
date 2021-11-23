@@ -1,0 +1,11 @@
+.card-home {
+    max-width: 800px;
+    width: auto;
+    margin: 0 auto;
+    margin: 5% auto !important;
+  }
+
+  .pp-selectBtn {
+    border-radius: 5px;
+    width: 30%;
+  }

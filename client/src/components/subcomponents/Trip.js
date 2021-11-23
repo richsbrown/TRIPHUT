@@ -4,6 +4,7 @@ import {update_data} from '../../Redux/Actions/action';
 import { Link } from "react-router-dom";
 import moment from "moment";
 import APIService from "../../apiService";
+import './styles/trip.css'
 
 const Trip = (props) => {
   const mydata = useSelector(state =>state.loggedUser);
@@ -42,7 +43,7 @@ const Trip = (props) => {
   return(
     <div id={id} data-username={postedId} className="card trip-card" style={{ marginBottom: "1rem", padding: "0.3rem" }}>
       <div className="post-top-part">
-        {dp && <Link to={`/user/${username}`}><img style={{ marginTop: '0.5rem' }} className="post-profile-pic" width="40" height="40" src={dp || require('../../images/profile-pic.jpg')} alt="profile pic" /></Link>}
+        {dp && <Link to={`/user/${username}`}><img style={{ marginTop: '0.5rem' }} className="post-profile-pic" width="40" height="40" src={dp || 'no image'} alt="profile pic" /></Link>}
         <h6 className="post-username"><strong><Link to={`/user/${username}` } style={{ cursor: 'pointer' }}>{username}</Link></strong></h6>
         <div className = "post-top-more">
           {username === mydata.username && <i className="material-icons" onClick ={handleDelete}>delete</i>}

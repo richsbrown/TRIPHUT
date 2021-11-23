@@ -3,6 +3,7 @@ import {Link, useParams, useNavigate} from 'react-router-dom';
 import {useSelector} from 'react-redux';
 import moment from 'moment';
 import APIService from '../../apiService';
+import "./styles/profile.css"
 
 const Profile = () => {
   const {username,} = useParams();
@@ -27,7 +28,7 @@ const Profile = () => {
   },[follow, navigate, username, token]);
   
   const followHandler = ()=> {
-    APIService.getFollowers(username, token)
+    APIService.follow(username, token)
     .then(data => {
       if(!data.error){
         setFollow(prev=>!prev)
@@ -64,8 +65,16 @@ const Profile = () => {
       <hr className="hr-profile" />
       <div className="row center">
         <span className="col s4"><strong>{userData.trips.length}</strong><br />posts</span>
-        <Link to={`/followering/${userData._id}/followers`}><span className="col s4"><strong>{userData.followers.length}</strong><br />followers</span></Link>
-        <Link to={`/followering/${userData._id}/following`}><span className="col s4"><strong>{userData.following.length}</strong><br />following</span></Link>
+
+        {/* <Link to={`/followering/${userData._id}/followers`}><span className="col s4"><strong>{userData.followers.length}</strong><br />followers</span></Link>
+        <Link to={`/followering/${userData._id}/following`}><span className="col s4"><strong>{userData.following.length}</strong><br />following</span></Link> */}
+        {/* {console.log('user data on profile', userData)} */}
+        <Link to={`/user/${userData.username}/followers`}><span className="col s4"><strong>{userData.followers.length}</strong><br />followers</span></Link>
+        <Link to={`/user/${userData.username}/following`}><span className="col s4"><strong>{userData.following.length}</strong><br />following</span></Link>      
+      
+      
+      
+      
       </div>
       { // Mapping through the post state array to display all the posts on Page.
         userData.trips.slice(0).reverse().map(post => {

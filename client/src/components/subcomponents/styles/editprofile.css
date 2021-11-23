@@ -1,0 +1,60 @@
+.card-home {
+    max-width: 800px;
+    width: auto;
+    margin: 0 auto;
+    margin: 5% auto !important;
+    
+  }
+  
+  .card-home:hover{
+    transform: scale(1);
+    opacity: 1;
+    cursor: pointer;
+  }
+
+  .post-top-part {
+    display: flex;
+    width: 100%;
+  }
+
+  .post-top-part > input:focus {
+    box-shadow: 0 1px 0 0 transparent !important;
+  }
+
+  .ep-doneBtn {
+    margin-left: auto;
+    margin: 1rem;
+    font-size: 1.4rem;
+    cursor: pointer;
+  }
+  
+  .ep-cancelBtn {
+    margin: 1rem;
+    font-size: 1.4rem;
+    cursor: pointer;
+  }
+  
+  .ep-headerTitle {
+    margin: 1.1rem auto;
+    font-size: 1.5rem;
+  }
+  
+  .ep-labelDiv {
+    font-size: 1.3rem;
+    width: 27%;
+    margin-top: 0.5rem;
+  }
+  
+  .ep-input {
+    max-width: 70%;
+    border-color: white !important;
+    margin-right: 3%;
+    font-size: 1.3rem !important;
+  }
+
+  .profile-img {
+    width: 10rem;
+    height: 10rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 100%;
+  }

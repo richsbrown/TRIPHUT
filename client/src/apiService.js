@@ -66,7 +66,27 @@ APIService.getProfileInfo = (username, token ) => {
     .catch(err => console.log(err))
 }
 
-APIService.getFollowers = (username, token) => {
+APIService.getFollowers = (userID) => {
+  return fetch (`http://localhost:3001/user/${userID}/followers`, {
+    headers: {
+      "Content-Type":'application/json',
+    }
+  })
+  .then(res => res.json())
+  .catch(err => console.log(err));
+} 
+
+APIService.getFollowing = (username) => {
+  return fetch (`http://localhost:3001/user/${username}/following`, {
+    headers: {
+      "Content-Type":'application/json',
+    }
+  })
+  .then(res => res.json())
+  .catch(err => console.log(err));
+} 
+
+APIService.follow = (username, token) => {
   return fetch(`http://localhost:3001/user/${username}/follow`,{
       method: 'POST',
       headers: {

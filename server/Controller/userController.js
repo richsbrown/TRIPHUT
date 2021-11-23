@@ -114,18 +114,34 @@ exports.signIn = (req,res) => {
 }
 
 exports.getFollows = (req, res)=> {
-  User.findById(req.params.userId, req.params.task)
-    .populate(req.params.task, "username dp _id fullname followers")
-    //.exec()
-    .then(task => {
-      if (task) {
-        res.json({ [req.params.task]: task });
+  User.findOne({username: req.params.username})
+    .populate("followers", "username dp _id fullname followers")
+    .exec()
+    .then(result => {
+      if (result) {
+        res.json(result);
       } else {
-        res.status(422).json({ error: "wrong task" });
+        res.status(422).json({ error: "no followers found" });
       }
     })
     .catch(er => console.log(er))
 }
+
+exports.getFollowing = (req, res)=> {
+  User.findOne({username: req.params.username})
+    .populate("following", "username dp _id fullname followers trips")
+    .exec()
+    .then(result => {
+      if (result) {
+        res.json(result);
+      } else {
+        res.status(422).json({ error: "no profiles found" });
+      }
+    })
+    .catch(er => console.log(er))
+}
+
+//write new controller for user Followers.js page
 
 exports.pushFollows = (req,res) => {
   User.findOne({ username: req.params.username })

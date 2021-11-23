@@ -1,0 +1,16 @@
+.profile-preview {
+  display: flex;
+  background: white;
+  border: 0px;
+  border-radius: 20px;
+  height: 80px;
+  width: 400px;
+}
+
+.profile-preview img {
+    max-height: 80px;
+}
+
+.profile-preview h4 {
+    margin-left: 20px;
+}

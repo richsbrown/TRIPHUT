@@ -7,6 +7,8 @@ import {useNavigate, useParams} from 'react-router-dom';
 import ReactCrop from 'react-image-crop';
 import { update_data } from "../../Redux/Actions/action";
 import APIService from '../../apiService'
+import './styles/addPhoto.css'
+
 
 const AddPhoto = () => {
   const {postId} = useParams();

@@ -17,6 +17,8 @@ import EditProfile from "../components/subcomponents/editprofile"
 import ProfilePhoto from "../components/subcomponents/profilePhoto"
 import TripPage from "../components/Screens/tripPage"
 import AddPhoto from "../components/subcomponents/addPhoto"
+import Followers from "./Screens/Followers"
+import Following from "./Screens/following"
 import VideoChat from "./Screens/videoChatApp"
 import APIService from "../apiService"
 
@@ -60,6 +62,11 @@ const Routing = () => {
       )}
       {isAuth && <Route exact path="/profile/edit" element={<EditProfile />} />}
       {isAuth && <Route exact path="/user/:username" element={<Profile />} />}
+      
+      {/* NEW ROUTES FOR FOLLOWERS & FOLLOWING PAGES */}
+      {isAuth && <Route exact path="/user/:username/followers" element={<Followers />} />}
+      {isAuth && <Route exact path="/user/:username/following" element={<Following />} />}
+
       {isAuth && <Route exact path="/" element={<Home />} />}
       {isAuth && <Route exact path="/createtrip" element={<CreateTrip />} />}
       {!isAuth && <Route exact path="/signup" element={<Signup />} />}

@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Link, useParams, useNavigate} from 'react-router-dom';
 import {useSelector} from 'react-redux';
 import APIService from '../../apiService';
+import './styles/tripPage.css'
 
 const TripPage = ()=> {
   const [trip,setTrip] = useState();
@@ -39,6 +40,11 @@ const TripPage = ()=> {
           <div className={"profile-flex"} >
             <span className="username profile-flex-item">{trip.title}</span>
           </div>
+        </div>
+        <div>
+          <Link to={`/user/${trip.postedBy.username}`}> 
+            <h3>{trip.postedBy.username}</h3>
+          </Link>
         </div>
       </div>
       {(loggedUser._id === trip.postedBy._id) ?

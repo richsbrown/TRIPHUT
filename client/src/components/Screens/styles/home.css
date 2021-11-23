@@ -1,0 +1,14 @@
+.trip-card{
+    max-width: 700px;
+    width: auto;
+    margin: 0 auto;
+    margin: 5% auto !important;
+    opacity:0.95;
+    transform: scale(1);
+  }
+  
+  .trip-card:hover{
+    transform: scale(1.01);
+    opacity: 1;
+    cursor: pointer;
+  }

@@ -1,0 +1,27 @@
+.card-home {
+  max-width: 800px;
+  width: auto;
+  margin: 0 auto;
+  margin: 5% auto !important;
+  
+}
+
+.card-home:hover{
+  transform: scale(1);
+  opacity: 1;
+  cursor: pointer;
+}
+
+.post-top-part {
+  display: flex;
+  width: 100%;
+}
+
+.post-top-part > input:focus {
+  box-shadow: 0 1px 0 0 transparent !important;
+}
+
+.btn-floating{
+    bottom: -1px;
+    right:-1px;
+  }

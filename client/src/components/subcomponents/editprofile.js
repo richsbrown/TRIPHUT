@@ -3,6 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { set_loggedUser } from "../../Redux/Actions/action";
 import APIService from '../../apiService';
+import './styles/editprofile.css'
 
 const EditProfile =() => {
 const navigate = useNavigate();

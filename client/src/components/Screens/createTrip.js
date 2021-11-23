@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import './styles/createTrip.css'
 import M from "materialize-css"
 import { useSelector, useDispatch } from "react-redux"
 import { update_hPosts } from "../../Redux/Actions/action"
