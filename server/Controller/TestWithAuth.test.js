@@ -7,7 +7,7 @@
     var mongoose = require("mongoose");
 
     // Import server
-    var server = require('../server');
+    var server = require('../testingServer');
 
     // Import Todo Model
     var Trip = require("../Models/TripModel");

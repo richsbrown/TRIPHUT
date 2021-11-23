@@ -16,6 +16,7 @@ APIService.signIn = (email, password) => {
     method:'POST',
     headers:{
       'Content-Type':'application/json'
+      
     },
     body:JSON.stringify({
       email,
@@ -26,12 +27,12 @@ APIService.signIn = (email, password) => {
   .catch(err =>console.log(err))
 }
 
-APIService.createTrip = (url, description, title) => {
+APIService.createTrip = (url, description, title, token) => {
   return fetch("http://localhost:3001/createtrip", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      authorization: "Bearer " + localStorage.getItem("jwt"),
+      "authorization": "Bearer " + token
     },
     body: JSON.stringify({
       url: url,
@@ -43,12 +44,12 @@ APIService.createTrip = (url, description, title) => {
   .catch(err => console.log(err))
 }
 
-APIService.populateTrips = (id, postId) => {
+APIService.populateTrips = (id, postId, token) => {
   return fetch((id) ? `http://localhost:3001/user/${id}/trips` : (postId) ? 'http://localhost:3001/myCollections' : 'http://localhost:3001/alltrips', {
       method: (id) ? "POST" : "GET",
       headers: {
         "Content-Type": "application/json",
-        "authorization": "Bearer " + localStorage.getItem('jwt')
+        "authorization": "Bearer " + token 
       }
     })
     .then(res => res.json())
@@ -198,4 +199,16 @@ APIService.authenticate = (token) => {
   .catch(err => console.log(err));
 }
 
+APIService.deleteTrip = (id) => {
+  return fetch (`http://localhost:3001/${id}/delete`, {
+    method:'DELETE',
+    headers:{
+      'Content-Type':'application/json',
+      'authorization': "Bearer " + localStorage.getItem('jwt')
+    }
+  })
+  .then(res => res.json())
+  .catch(err => console.log(err));
+}
+  
 module.exports = APIService;

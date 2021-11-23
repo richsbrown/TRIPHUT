@@ -2,7 +2,7 @@ const Trip = require('../Models/TripModel');
 const User = require('../Models/UserModel');
 
 exports.getAllTrips = (req, res)=> {
-  //console.log('test from controller')
+  
   Trip.find({},null,{sort:{postedDate:-1}})
     .populate("postedBy", "_id username dp")
     .populate("likes", "_id username")
@@ -96,10 +96,10 @@ exports.getTripByUser =(req,res) => {
 exports.getTrip =(req, res) => {
   const {postId}  = req.body
   Trip.find({ _id: postId})
-    .populate("postedBy", "_id username")
+    .populate("postedBy", "_id username dp")
     .exec()
     .then (trip => {
-      if(trip) {res.status(200).json({trip})}
+      if(trip) {res.status(200).json({trip})} 
       else{res.status(422).json({error:"Error getting user trips"})}
     })
   .catch (err => {

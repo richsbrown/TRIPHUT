@@ -18,15 +18,13 @@ const Home = () => {
   const [loaded,setLoaded] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [token] = useState(localStorage.getItem("jwt"));
 
-  //const [trips, setTrips] = useState([]);
-  //const [followingTrips, setFollowingTrips] = useState([])
+  const [followingTrips, setFollowingTrips] = useState([])
 
 
 
   useEffect(() => {
-
-    /* stuff to post-getting scaleable
 
     async function getFollowing (){
       const response = await APIService.getFollowing(loggedUser.username)
@@ -39,24 +37,12 @@ const Home = () => {
     
     getFollowing()
     
-    async function getTripInfo(trip) {
-      const tripObject = await APIService.getTripInfo(trip);
-      return tripObject;
-    }
-    
-    const getTrips = async () => {
-      return Promise.all(followingTrips.map(trip => getTripInfo(trip)))
-    }
-    
-    
-    getTrips().then(res => console.log(res));
-    */
-    
+  
     if (isAuth) {
       // // Using ReactDOM.unstable_batchedUpdates to batch the fetch and sts
       ReactDOM.unstable_batchedUpdates(() => {
         // If id is recieved as useParams prop then fetch specific user posts else if postId is recieved then fetch myCollection else home page fetch.
-        APIService.populateTrips(id, postId)
+        APIService.populateTrips(id, postId, token)
           .then(resp => {
             if (!resp.error && resp.trips.length > 0) {
               dispatch(set_hPosts(resp.trips));
@@ -64,7 +50,7 @@ const Home = () => {
                 setLoaded(true);
               }
             } else {
-              navigate.push('/');  //if selected collection or userposts are 0 then display home route.
+             navigate.push('/');  //if selected collection or userposts are 0 then display home route.
             }
           })
           .catch(err => console.log(err))
@@ -87,11 +73,7 @@ const Home = () => {
           <div className="homepage" style={{ position: "relative", }}>
             {(!id && !postId) && <CreateTrip />}
             { // Mapping through the post state array to display all the posts on Page.
-            posts.map(post => {
-              if (loggedUser.following.indexOf(post.postedBy._id) !== -1) {
-                return <Trip id={post._id} key={post._id} postId={post._id} post={post} />
-              }
-            })
+            followingTrips.map(trip => <Trip id={trip} key={trip} postId={trip} post={trip} />)
             }
         </div>
       </div>

@@ -23,10 +23,11 @@ const CreateTrip = () => {
     url: "",
   })
 
-  const [send, setSend] = useState(false)
-  const [imgUrl, seturl] = useState("")
-  const { file, description, title, url } = trip
-  const [crop, setCrop] = useState({ x: 0, y: 30, width: 100 })
+  const [send, setSend] = useState(false);
+  const [imgUrl, seturl] = useState("");
+  const { file, description, title, url } = trip;
+  const [crop, setCrop] = useState({ x: 0, y: 30, width: 100 });
+  const [token] = useState(localStorage.getItem("jwt"));
 
 
   const onChangeHandler = (event) => {
@@ -82,20 +83,20 @@ const CreateTrip = () => {
 
   useEffect(() => {
 
-    async function sendTrip (url, description, title) {
-      const result = await APIService.CreateTrip(url, description, title)
+    async function sendTrip (url, description, title, token) {
+      const result = await APIService.createTrip(url, description, title, token)
       return result;
     }
 
     if (send) {
-      const result = sendTrip(url, description, title)
+      const result = sendTrip(url, description, title, token)
         dispatch(update_hPosts(result.post))
         if (result.error) {
-          M.toast({ html: result.error, classes: "red darken-1" })
+          M.toast({ html: "error uploading", classes: "red darken-1" })
         } else {
           setTrip({ title: "", description: "", url: "", file: null })
           setSend((prev) => !prev)
-          M.toast({ html: result.message, classes: "blue darken-1" })
+          M.toast({ html: "uploaded", classes: "blue darken-1" })
         }
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -5,15 +5,14 @@ const supertest = require('supertest');
 const assert = require('chai').assert;
 const mongoose = require('mongoose');
 const databaseName = 'TripHut_TEST2';
-//const {beforeAll, afterEach} = require('jest');
 
-const app = require('../server');
+//const app = require('../testingServer');
 const authRouter = require("../Routes/user");
 const authController = require('./userController');
 const User = require('../Models/UserModel');
 const mocks = require('node-mocks-http');
 const { expect } = require('chai');
-const { afterEach, after } = require('mocha');
+const { afterEach, before, beforeEach, after } = require('mocha');
 
 var corsOptions = {
     origin: "*",
@@ -30,10 +29,10 @@ describe('Intagration tests', () => {
 
     before(async () => {
         const url = `mongodb://127.0.0.1/${databaseName}`;
-        await mongoose.connect(url, {useNewUrlParser: true});
+        await mongoose.createConnection(url, {useNewUrlParser: true});
     });
 
-    // afterEach(async () => {
+    // after(async () => {
     //     await User.deleteMany();
     // });
 
@@ -43,17 +42,18 @@ describe('Intagration tests', () => {
 
     it('should save a new user to the database', async () => {
 // email, fullname, username, password
-        const email = 'test2@gmail.com';
-        const fullname = 'Jane Doe Test';
-        const username = 'JaneTest';
-        const password = '222222';
+        const email = 'test6@gmail.com';
+        const fullname = 'Joe Doe Test';
+        const username = 'JoeTest';
+        const password = '666666';
 
         const res = await request.post('/signup', )
         .send({email, fullname, username, password})
 
         const user = await User.findOne({username})
-        expect(user.username).to.equal(username)
         
+        expect(user.username).to.equal(username)
+        console.log(user.username)
     });
 
 
