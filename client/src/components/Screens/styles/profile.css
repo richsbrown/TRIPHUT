@@ -1,81 +1,80 @@
 .card-home {
-    max-width: 800px;
-    width: auto;
-    margin: 0 auto;
-    margin: 5% auto !important;
-    
-  }
+  max-width: 800px;
+  width: auto;
+  margin: 0 auto;
+  margin: 5% auto !important;
   
-  .card-home:hover{
-    transform: scale(1);
-    opacity: 1;
-    cursor: pointer;
-  }
+}
 
-  .profile-img {
-    width: 10rem;
-    height: 10rem;
-    border: 1px solid #e0e0e0;
-    border-radius: 100%;
-  }
+.card-home:hover{
+  transform: scale(1);
+  opacity: 1;
+  cursor: pointer;
+}
 
-  .profile-data{
-    color: #555555;
-    margin: 0.5rem auto!important;
-  }
+.profile-img {
+  width: 10rem;
+  height: 10rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 100%;
+}
 
-  .profile-flex {
-    display: flex;
-    margin: 1rem 0;
-    justify-content: space-around;
-    flex-wrap: wrap !important;
-  }
+.profile-data{
+  color: #555555;
+  margin: 0.5rem auto!important;
+}
 
-  .username {
-    font-size: 1.5rem !important;
-    margin: 0 0.5rem !important;
-  }
+.profile-flex {
+  display: flex;
+  margin: 1rem 0;
+  justify-content: space-around;
+  flex-wrap: wrap !important;
+}
 
-  .hr-profile {
-    border-top: 1px solid #e0e0e0 !important;
-    box-shadow: 0 0 9px 0 #e0e0e0 !important;
-  }
+.username {
+  font-size: 1.5rem !important;
+  margin: 0 0.5rem !important;
+}
 
-  .trip-card{
-    max-width: 700px;
-    width: auto;
-    margin: 0 auto;
-    margin: 5% auto !important;
-    opacity:0.95;
-    transform: scale(1);
-  }
-  
-  .trip-card:hover{
-    transform: scale(1.01);
-    opacity: 1;
-    cursor: pointer;
-  }
-  
-  .post-top-more {
-    margin-left: auto;
-    margin-top: 1rem;
-    margin-right: 1rem;
-    font-size: large;
-  }
+.hr-profile {
+  border-top: 1px solid #e0e0e0 !important;
+  box-shadow: 0 0 9px 0 #e0e0e0 !important;
+}
 
-  .trip-details{
-    display:flex;
-    margin-bottom:2%;
-  }
-  
-  .trip-details-body{
-    margin-left:5%;
-    
-  }
+.trip-card{
+  max-width: 700px;
+  width: auto;
+  margin: 0 auto;
+  margin: 5% auto !important;
+  opacity:0.95;
+  transform: scale(1);
+}
 
-  .profile-img {
-    width: 10rem;
-    height: 10rem;
-    border: 1px solid #e0e0e0;
-    border-radius: 100%;
-  }
+.trip-card:hover{
+  transform: scale(1.01);
+  opacity: 1;
+  cursor: pointer;
+}
+
+.post-top-more {
+  margin-left: auto;
+  margin-top: 1rem;
+  margin-right: 1rem;
+  font-size: large;
+}
+
+.trip-details{
+  display:flex;
+  margin-bottom:2%;
+}
+
+.trip-details-body{
+  margin-left:5%;
+}
+
+.profile-img {
+  width: 10rem;
+  height: 10rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 100%;
+}

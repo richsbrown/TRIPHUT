@@ -77,26 +77,26 @@ const Profile = () => {
       
       </div>
       { // Mapping through the post state array to display all the posts on Page.
-        userData.trips.slice(0).reverse().map(post => {
+        userData.trips.slice(0).reverse().map(trip => {
           // each post should probably be made into a component instead
           return(
-            <div key={post._id} className="card trip-card" style={{ marginBottom: "1rem", padding: "0.3rem" }}>
+            <div key={trip._id} className="card trip-card" style={{ marginBottom: "1rem", padding: "0.3rem" }}>
             <div className = "post-top-more" style={{textAlign:'right'}}>
-            <Link to ={`/posts/${post._id}`}><i className="material-icons">arrow_forward</i></Link>
+            <Link to ={`/posts/${trip._id}`}><i className="material-icons">arrow_forward</i></Link>
             </div>  
             <div className="trip-details" style={{marginTop:'1rem'}}>
-              <img src={post.url} alt="img" width="100%" className = "profile-img" />
+              <img src={trip.url} alt="img" width="100%" className = "profile-img" />
               <div className = 'trip-details-body'>
-              {post.title ? <h5 style ={{color:'grey',textDecoration:'underline',marginTop:'0px', textTransform:'capitalize'}}>{post.title}</h5> : null}
-                <p>{post.description}</p>
-                <p><strong>Posted On:</strong> {moment(post.postedDate).format('MMMM Do, YYYY')}</p>
-                <p style ={{color:'#158bcb'}}><strong>{post.likes.length} like{post.likes.length === 1 ? '':'s'}
+              {trip.title ? <h5 style ={{color:'grey',textDecoration:'underline',marginTop:'0px', textTransform:'capitalize'}}>{trip.title}</h5> : null}
+                <p>{trip.description}</p>
+                <p><strong>Posted On:</strong> {moment(trip.postedDate).format('MMMM Do, YYYY')}</p>
+                <p style ={{color:'#158bcb'}}><strong>{trip.likes.length} like{trip.likes.length === 1 ? '':'s'}
                 </strong></p>
             </div>
             </div>
             </div>
           )
-          //<Link key={++count} to={{ pathname: `/${userData._id}/${post._id}` }}><img style={{ width: '100%', height: '8rem' }} src={post.url} alt="posts" /></Link>
+          //<Link key={++count} to={{ pathname: `/${userData._id}/${trip._id}` }}><img style={{ width: '100%', height: '8rem' }} src={post.url} alt="posts" /></Link>
         })
       }
       </div>

@@ -49,15 +49,23 @@ isAuth ? navigate('/signup') : setDisplay(true)
 
   return(
     display && <>
-      <form method="post" className="card card-login" onSubmit ={handleSubmit}>
+      <form 
+      data-testid='loginForm'
+      method="post" className="card card-login" onSubmit ={handleSubmit}>
         <h2 className="insta-font">TripHut</h2>
-        <input type="email" autoComplete="off"
+        <input 
+        data-testid='loginEmail'
+        type="email" autoComplete="off"
           name="email" value ={email} placeholder="Email" required onChange ={handleFormData}
         />
-        <input type="password" name="password" required minLength="6"
+        <input 
+        data-testid='loginPassword'
+        type="password" name="password" required minLength="6"
           placeholder="Password" onChange ={handleFormData} value ={password} />
         <br />
-        <button className="btn blue insta-btn">
+        <button 
+        data-testid='loginButton'
+        className="btn blue insta-btn">
           Log In
       </button>
         <div className="or-container">
@@ -66,7 +74,9 @@ isAuth ? navigate('/signup') : setDisplay(true)
         <br />
         {/* <Link className="blue-text  text-darken-4" to="/">forgot password ?</Link> */}
         <br/>
-        <Link className="btn signup" to="/signup"> Sign up</Link>
+        <Link 
+        data-testid='loginButtonLinkToSignup'
+        className="btn signup" to="/signup"> Sign up</Link>
       </form>
     </>
   )

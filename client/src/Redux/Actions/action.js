@@ -22,16 +22,16 @@ export const unset_loggedUser = () => {
   }
 }
 
-export const set_hPosts = (data) => {
+export const set_hTrips = (data) => {
   return {
-      type: 'SET_HPOSTS',
+      type: 'SET_HTRIPS',
       payload: data
   }
 }
 
-export const update_hPosts = (data) => {
+export const update_hTrips = (data) => {
   return {
-      type: 'UPDATE_HPOSTS',
+      type: 'UPDATE_HTRIPS',
       payload: data
   }
 }

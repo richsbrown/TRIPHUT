@@ -19,9 +19,14 @@ Changes done:
         - Removed Required profile pic local file (Trip.js line 45)
         - Fixed likes updating
         - Created Followers & Following Pages, Components, Routes, and API
-        - Created Front End tests
+        - Created Front End tests for
+                - Unit Tests Login & SignUp
+                - Integration Test Login
+                - E2E Tests User Adding Trip
         - Broke up App.css into individual component/page css files
         - Home page displays trips only of users the user follows (method can be improved for better scalability)
+        - Changed variables named "post" to "trip"
+        - Created end-to-end test         
 
 
 

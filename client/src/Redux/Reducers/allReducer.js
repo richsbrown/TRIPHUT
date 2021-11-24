@@ -5,7 +5,7 @@ import tripReducer from './tripReducer'
 import updateReducer from "./update";
 
 const allReducers = combineReducers({
-  ishposts:tripReducer,
+  ishTrips:tripReducer,
   isLogged: isAuthenticated,
   loggedUser:loggedUserReducer,
   isUpdate: updateReducer

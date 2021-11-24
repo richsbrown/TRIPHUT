@@ -1,18 +1,18 @@
 .card-home {
-    max-width: 800px;
-    width: auto;
-    margin: 0 auto;
-    margin: 5% auto !important;
-    
-  }
+  max-width: 800px;
+  width: auto;
+  margin: 0 auto;
+  margin: 5% auto !important;
   
-  .card-home:hover{
-    transform: scale(1);
-    opacity: 1;
-    cursor: pointer;
-  }
-  
-  .pp-selectBtn {
-    border-radius: 5px;
-    width: 30%;
-  }
+}
+
+.card-home:hover{
+  transform: scale(1);
+  opacity: 1;
+  cursor: pointer;
+}
+
+.pp-selectBtn {
+  border-radius: 5px;
+  width: 30%;
+}

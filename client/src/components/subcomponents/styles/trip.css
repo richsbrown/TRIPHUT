@@ -1,52 +1,52 @@
 .trip-card{
-    max-width: 700px;
-    width: auto;
-    margin: 0 auto;
-    margin: 5% auto !important;
-    opacity:0.95;
-    transform: scale(1);
-  }
-  
-  .trip-card:hover{
-    transform: scale(1.01);
-    opacity: 1;
-    cursor: pointer;
-  }
+  max-width: 700px;
+  width: auto;
+  margin: 0 auto;
+  margin: 5% auto !important;
+  opacity:0.95;
+  transform: scale(1);
+}
 
-  .post-top-part {
-    display: flex;
-    width: 100%;
-  }
+.trip-card:hover{
+  transform: scale(1.01);
+  opacity: 1;
+  cursor: pointer;
+}
 
-  .post-top-part > input:focus {
-    box-shadow: 0 1px 0 0 transparent !important;
-  }
+.post-top-part {
+  display: flex;
+  width: 100%;
+}
 
-  .post-profile-pic {
-    margin: 0.2rem 1rem;
-    border: solid 1px red;
-    border-radius: 50%;
-  }
+.post-top-part > input:focus {
+  box-shadow: 0 1px 0 0 transparent !important;
+}
 
-  .post-top-more {
-    margin-left: auto;
-    margin-top: 1rem;
-    margin-right: 1rem;
-    font-size: large;
-  }
+.post-profile-pic {
+  margin: 0.2rem 1rem;
+  border: solid 1px red;
+  border-radius: 50%;
+}
 
-  .trip-details{
-    display:flex;
-    margin-bottom:2%;
-  }
-  
-  .trip-details-body{
-    margin-left:5%;
-  }
+.post-top-more {
+  margin-left: auto;
+  margin-top: 1rem;
+  margin-right: 1rem;
+  font-size: large;
+}
 
-  .profile-img {
-    width: 10rem;
-    height: 10rem;
-    border: 1px solid #e0e0e0;
-    border-radius: 100%;
-  }
+.trip-details{
+  display:flex;
+  margin-bottom:2%;
+}
+
+.trip-details-body{
+  margin-left:5%;
+}
+
+.profile-img {
+  width: 10rem;
+  height: 10rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 100%;
+}

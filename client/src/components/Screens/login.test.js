@@ -1,4 +1,7 @@
 import Login from "./login";
+//import handleSubmit from './login'
+import setFormData from './login'
+import set_loggedUser from '../../Redux/Actions/action'
 import { act, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Provider } from "react-redux";
@@ -13,14 +16,16 @@ jest.mock('../../apiService.js', () => ({
 
 it('should call signIn with the correct credentials', async () => {
 
+await act( async () => {
 
 try { 
 
+//const setFormData = jest.fn();
 const handleSubmit = jest.fn();
 const credentials = {email: 'componentTest@test.com', password: 'componentTest'}
 
 render(
-<Provider store ={store}>
+<Provider store = {store} set_loggedUser={set_loggedUser(null)}>
     <BrowserRouter>
     <Login handleSubmit={handleSubmit} />
     </BrowserRouter>
@@ -35,19 +40,19 @@ const submitBtn = screen.getByRole('button', {name: /Log In/i});
 userEvent.type(emailInput, 'componentTest@test.com');
 userEvent.type(passwordInput, 'componentTest');
 
-act(() => {
-userEvent.click(submitBtn);
-})
-await waitFor(() => {
-expect(handleSubmit).toHaveBeenCalledWith(credentials)   
-})
+await userEvent.click(submitBtn);
 
-} catch (e) {
+//await waitFor(() => {
+    expect(handleSubmit).toHaveBeenCalledWith(credentials)   
+//})
+
+} catch (error) {
     
-    console.log('this is the error', e)
+    //console.log( 'this is the error', error )
     
 }
 
+})
 
 })
 

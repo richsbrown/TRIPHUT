@@ -36,24 +36,39 @@ const submitHandler = async (event) => {
 
   return(
     <>
-            <form method="post" className="card card-login" onSubmit={submitHandler}>
+            <form 
+            data-testid='signupForm'
+            method="post" className="card card-login" onSubmit={submitHandler}>
                 <h2 className="insta-font">TripHut</h2>
                 <h5 className="grey-text  text-darken-1">Sign up here</h5>
-                <input type="email" autoComplete="off"
+                <input 
+                data-testid='signupEmail'
+                type="email" autoComplete="off"
                     name="email" placeholder="Email" required value ={email} onChange = {signupHandler}/>
-                <input type="text" autoComplete="off"
+                <input 
+                data-testid='signupFullname'
+                type="text" autoComplete="off"
                     name="fullname" placeholder="Full Name" required minLength="4" value ={fullname} onChange = {signupHandler}/>
-                <input type="text" autoComplete="off" required minLength="4"
+                <input 
+                data-testid='signupUsername'
+                type="text" autoComplete="off" required minLength="4"
                     name="username" placeholder="Username" value ={username} onChange = {signupHandler}/>
-                <input type="password" name="password" required minLength="6"
+                <input 
+                data-testid='signupPassword'
+                type="password" name="password" required minLength="6"
                     placeholder="Password" value ={password} onChange = {signupHandler}/>
                 <br />
-                <button className="btn blue insta-btn">
+                <button 
+                data-testid='signupButton'
+                className="btn blue insta-btn">
                     Sign Up
                 </button>
             </form>
             <div className="card card-login signup-card">
-                Have an account?  <Link className="blue-text" to="/"> Log in</Link>
+                Have an account?  
+                <Link
+                data-testid='loginButtonLink' 
+                className="blue-text" to="/"> Log in</Link>
             </div>
     </>
   )

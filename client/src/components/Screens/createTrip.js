@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import './styles/createTrip.css'
 import M from "materialize-css"
 import { useSelector, useDispatch } from "react-redux"
-import { update_hPosts } from "../../Redux/Actions/action"
+import { update_hTrips } from "../../Redux/Actions/action"
 import ReactCrop from "react-image-crop"
 import "react-image-crop/dist/ReactCrop.css"
 import { storage } from "../../firebase/index"
@@ -90,7 +90,7 @@ const CreateTrip = () => {
 
     if (send) {
       const result = sendTrip(url, description, title, token)
-        dispatch(update_hPosts(result.post))
+        dispatch(update_hTrips(result.post))
         if (result.error) {
           M.toast({ html: "error uploading", classes: "red darken-1" })
         } else {

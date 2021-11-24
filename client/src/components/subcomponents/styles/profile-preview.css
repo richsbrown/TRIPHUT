@@ -5,12 +5,13 @@
   border-radius: 20px;
   height: 80px;
   width: 400px;
+  margin: 10px;
 }
 
 .profile-preview img {
-    max-height: 80px;
+  max-height: 80px;
 }
 
 .profile-preview h4 {
-    margin-left: 20px;
+  margin-left: 20px;
 }
