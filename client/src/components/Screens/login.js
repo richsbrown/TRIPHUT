@@ -72,7 +72,7 @@ isAuth ? navigate('/signup') : setDisplay(true)
           <hr />OR<hr />
         </div>
         <br />
-        {/* <Link className="blue-text  text-darken-4" to="/">forgot password ?</Link> */}
+        
         <br/>
         <Link 
         data-testid='loginButtonLinkToSignup'

@@ -59,7 +59,7 @@ const ProfilePhoto = () => {
         // set new user data to the redux logeduser state
         dispactch(set_loggedUser(result.user));
         dispactch(update_data()); // set state to trigger use effects where data needs to be changed in other components
-        navigate(-1);   //goback to previous pae
+        navigate(-1);   //goback to previous page
       })
       .catch(err => console.log(err))
     }
@@ -80,7 +80,7 @@ const ProfilePhoto = () => {
                 </div>
                 {
                     file && <div >
-                        <ReactCrop onImageLoaded={()=>{}/*setImage*/} src={file} crop={crop} keepSelection='true' circularCrop onChange={setCrop} />
+                        <ReactCrop onImageLoaded={()=>{}} src={file} crop={crop} keepSelection='true' circularCrop onChange={setCrop} />
                     </div>
                 }
             </div>

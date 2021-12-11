@@ -25,7 +25,6 @@ import APIService from "../apiService"
 const Routing = () => {
   const [token] = useState(localStorage.getItem("jwt"))
   const isAuth = useSelector((state) => state.isLogged)
-  //const loggedUser = useSelector((state) => state.loggedUser)
   const isUpdate = useSelector((state) => state.isUpdate)
   const dispatch = useDispatch()
 

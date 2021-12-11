@@ -29,7 +29,7 @@ describe('Intagration tests', () => {
 
     before(async () => {
         const url = `mongodb://127.0.0.1/${databaseName}`;
-        await mongoose.createConnection(url, {useNewUrlParser: true});
+        await mongoose.connect(url, {useNewUrlParser: true});
     });
 
     // after(async () => {
@@ -41,11 +41,11 @@ describe('Intagration tests', () => {
     })
 
     it('should save a new user to the database', async () => {
-// email, fullname, username, password
-        const email = 'test6@gmail.com';
-        const fullname = 'Joe Doe Test';
-        const username = 'JoeTest';
-        const password = '666666';
+
+        const email = 'test8@gmail.com';
+        const fullname = 'Jessica Doe Test';
+        const username = 'JessicaTest';
+        const password = '888888';
 
         const res = await request.post('/signup', )
         .send({email, fullname, username, password})
@@ -53,7 +53,7 @@ describe('Intagration tests', () => {
         const user = await User.findOne({username})
         
         expect(user.username).to.equal(username)
-        console.log(user.username)
+        console.log('test username:', user.username)
     });
 
 

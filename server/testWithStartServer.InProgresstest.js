@@ -5,7 +5,7 @@ const userRouter = require('./Routes/user')
 const supertest = require('supertest');
 const mongoose = require('mongoose')
 const Trip = require('./Models/TripModel')
-const databaseName = 'TripHut_TEST'
+const databaseName = 'TripHut_TEST2'
 const request = supertest(app);
 
 

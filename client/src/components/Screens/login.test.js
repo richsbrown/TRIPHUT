@@ -1,5 +1,4 @@
 import Login from "./login";
-//import handleSubmit from './login'
 import setFormData from './login'
 import set_loggedUser from '../../Redux/Actions/action'
 import { act, render, screen, waitFor } from '@testing-library/react';
@@ -7,7 +6,6 @@ import userEvent from '@testing-library/user-event';
 import { Provider } from "react-redux";
 import store from '../../Redux/store';
 import {BrowserRouter} from 'react-router-dom';
-//import { signIn } from "../../apiService";
 
 jest.mock('../../apiService.js', () => ({
     signIn: () => ({email: 'componentTest@test.com', password: 'componentTest'})
@@ -20,7 +18,6 @@ await act( async () => {
 
 try { 
 
-//const setFormData = jest.fn();
 const handleSubmit = jest.fn();
 const credentials = {email: 'componentTest@test.com', password: 'componentTest'}
 
@@ -42,9 +39,9 @@ userEvent.type(passwordInput, 'componentTest');
 
 await userEvent.click(submitBtn);
 
-//await waitFor(() => {
+
     expect(handleSubmit).toHaveBeenCalledWith(credentials)   
-//})
+
 
 } catch (error) {
     

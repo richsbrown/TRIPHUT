@@ -16,9 +16,9 @@
     // use chaiHttp for making the actual HTTP requests        
     //chai.use(chaiHttp);
 
-    describe('Todo API', function() {
+    describe('Trip & User API', function() {
 
-        it('should Register user, login user, check token and delete a todo on /todo/<id> DELETE', function(done) {
+        it('should Register user, login user, check token and delete a trip on /trip/<id> DELETE', function(done) {
             chai.request(server)
 
                 // register request
@@ -26,9 +26,9 @@
 
                 // send user registration details
                 .send({
-                        'fullName': 'Paul Oluyege',
-                        'email': 'tester@gmail.com',
-                        'password': 'tester'
+                        'fullName': 'Jeremy Doe',
+                        'email': 'testjeremy@gmail.com',
+                        'password': '123456'
                     }
 
                 ) // this is like sending $http.post or this.http.post in Angular
@@ -43,8 +43,8 @@
                         .post('/auth/sign_in')
                         // send user login details
                         .send({
-                            'email': 'tester@gmail.com',
-                            'password': 'tester'
+                            'email': 'testjeremy@gmail.com',
+                            'password': '123456'
                         })
                         .end((err, res) => {
                             console.log('this runs the login part');
@@ -53,10 +53,10 @@
 
                             // follow up with requesting user protected page
                             chai.request(server)
-                                .get('/todos')
+                                .get('/user/:id/trips')
                                 .end(function(err, res) {
                                     chai.request(server)
-                                        .delete('/todo/' + res.body[0]._id)
+                                        .delete('/:tripId/delete' + res.body[0]._id)
 
                                         // we set the auth header with our token
                                         .set('Authorization', 'JWT ' + token)

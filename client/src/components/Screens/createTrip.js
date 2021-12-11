@@ -56,7 +56,6 @@ const CreateTrip = () => {
 
   const handleForm = (event) => {
     event.preventDefault()
-    //const file = getCroppedImage(image, crop)
     const name = trip.url.name.replace(".", "")
     console.log(trip.url, "From TripSide")
     const storageRef = ref(storage, `images/${name}`)
@@ -136,7 +135,6 @@ const CreateTrip = () => {
                 />
               </div>
               <label htmlFor="file-input">
-                {/* <img src={file} alt="img"  /> */}
               </label>
               <input
                 style={{ display: "none" }}
@@ -194,8 +192,7 @@ const CreateTrip = () => {
                     display: "absolute",
                     position: "fixed",
                     zIndex: 8,
-                    //bottom: -50,
-                    right: -75, // CHANGED 
+                    right: -75,
                   }}
                 >
                   <span className="btn-floating btn-large black"> 

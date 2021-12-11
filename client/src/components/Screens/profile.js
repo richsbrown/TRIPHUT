@@ -66,9 +66,7 @@ const Profile = () => {
       <div className="row center">
         <span className="col s4"><strong>{userData.trips.length}</strong><br />posts</span>
 
-        {/* <Link to={`/followering/${userData._id}/followers`}><span className="col s4"><strong>{userData.followers.length}</strong><br />followers</span></Link>
-        <Link to={`/followering/${userData._id}/following`}><span className="col s4"><strong>{userData.following.length}</strong><br />following</span></Link> */}
-        {/* {console.log('user data on profile', userData)} */}
+        
         <Link to={`/user/${userData.username}/followers`}><span className="col s4"><strong>{userData.followers.length}</strong><br />followers</span></Link>
         <Link to={`/user/${userData.username}/following`}><span className="col s4"><strong>{userData.following.length}</strong><br />following</span></Link>      
       
@@ -96,7 +94,7 @@ const Profile = () => {
             </div>
             </div>
           )
-          //<Link key={++count} to={{ pathname: `/${userData._id}/${trip._id}` }}><img style={{ width: '100%', height: '8rem' }} src={post.url} alt="posts" /></Link>
+          
         })
       }
       </div>
